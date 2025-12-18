@@ -84,5 +84,3 @@ Bu çalışma **Kocaeli Üniversitesi Yazılım Mühendisliği** bölümü kapsa
 1.  Projenin ana dizininde `README.md` adında yeni bir dosya oluştur (varsa içini boşalt).
 2.  Yukarıdaki kod bloğunu (gri kutu içindeki metni) tamamen kopyala ve dosyaya yapıştır.
 3.  Kaydet ve GitHub'a gönder. GitHub bu dosyayı otomatik olarak algılayıp profilinde görseldeki gibi şık bir şekilde sunacaktır.
-
-```
