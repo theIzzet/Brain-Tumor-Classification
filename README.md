@@ -64,7 +64,7 @@ brain-tumor-detection/
 
 1. **Repository'yi klonlayın:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/theIzzet/Brain-Tumor-Classification.git
    cd brain-tumor-detection
    ```
 
@@ -164,24 +164,7 @@ En iyi performans EfficientNetB6 modeli ile elde edilmiştir.
 - Docker servislerinin çalıştığından emin olun
 - `docker-compose logs` ile logları kontrol edin
 
-## 📝 Lisans
 
-Bu proje eğitim ve araştırma amaçlı geliştirilmiştir. Ticari kullanım için lisans gereklidir.
-
-## 👨‍💻 Geliştirici
-
-- **İsim:** İzzet Esener
-- **Öğrenci No:** 210229048
-- **Bölüm:** Yazılım Mühendisliği
-- **Üniversite:** Kocaeli Üniversitesi
-
-## 🤝 Katkıda Bulunma
-
-1. Fork edin
-2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add some amazing feature'`)
-4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
-5. Pull Request açın
 
 ## 📚 Referanslar
 
