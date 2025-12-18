@@ -1,4 +1,88 @@
-🧠 Beyin Tümörü Tespiti ve Sınıflandırma SistemiBu proje, Manyetik Rezonans (MR) görüntülerini analiz ederek beyin tümörlerini otomatik olarak tespit eden ve sınıflandıran uçtan uca (end-to-end) bir derin öğrenme uygulamasıdır.!📋 Proje ÖzetiProje, radyologlara karar destek mekanizması sunmak amacıyla geliştirilmiştir. Toplam 7.037 görüntü içeren geniş bir veri seti kullanılarak eğitilen model; Glioma, Meningioma, Pituitary (Hipofiz) tümörlerini tespit edebilmekte ve sağlıklı dokuları (No Tumor) ayırt edebilmektedir.Başarı OranıEn İyi Model: EfficientNetB6 (Transfer Learning)Test Doğruluğu: %92.22Sağlıklı Doku Ayırt Etme Özgüllüğü: %98🚀 Kullanılan TeknolojilerDerin Öğrenme: TensorFlow, Keras, EfficientNetB6Backend: FastAPI (Python)Frontend: React.js, ViteKonteynerizasyon: Docker, Docker ComposeGörüntü İşleme: Pillow, OpenCV, NumPy🏗️ Sistem MimarisiUygulama iki ana bileşenden oluşur:Backend: Eğitilmiş .keras modelini yükleyen, görüntüleri ön işleyen ve yüksek performanslı tahminler sunan FastAPI sunucusu.Frontend: Kullanıcının MR görüntülerini sürükleyip bırakabileceği, analiz sonuçlarını olasılık dağılımlarıyla birlikte görselleştiren modern React arayüzü.📦 Kurulum ve ÇalıştırmaProje tamamen Dockerize edilmiştir. Bilgisayarınızda Docker ve Docker Compose yüklü olması yeterlidir.1. Repoyu KlonlayınBashgit clone https://github.com/kullanici_adin/BrainTumorDetection.git
+Haklısın, önceki mesajda açıklamalarla karıştığı için kopyalaması zor olmuş olabilir. İşte sadece **`README.md`** dosyana yapıştırabileceğin, raporundaki teknik detayları (metrikler, sınıflar, başarı oranları) ve Docker kurulumunu içeren profesyonel format:
+
+```markdown
+# 🧠 Beyin Tümörü Tespiti ve Sınıflandırma Sistemi (Brain Tumor Detection)
+
+Bu proje, Manyetik Rezonans (MR) görüntülerini analiz ederek beyin tümörlerini otomatik olarak tespit eden ve dört farklı kategoriye sınıflandıran uçtan uca (end-to-end) bir derin öğrenme uygulamasıdır. 
+
+
+
+## 📋 Proje Özeti
+Proje, radyologlara teşhis sürecinde yardımcı olacak bir karar destek sistemi olarak geliştirilmiştir. Toplam **7.037 görüntü** içeren geniş ve güncel bir veri seti kullanılarak eğitilen model, tümörün varlığını tespit etmenin yanı sıra tümörün tipini de belirleyebilmektedir.
+
+### Sınıflandırılan Kategoriler:
+* **Glioma:** Beyin dokusunda başlayan tümör tipi.
+* **Meningioma:** Beyni çevreleyen zarlardan kaynaklanan tümör tipi.
+* **Pituitary (Hipofiz):** Hipofiz bezinde oluşan tümör tipi.
+* **No Tumor:** Sağlıklı beyin dokusu.
+
+## 🚀 Başarı Metrikleri
+Yapılan karşılaştırmalı testler sonucunda en yüksek performans **EfficientNetB6 (Transfer Learning)** mimarisi ile elde edilmiştir.
+
+* **Genel Test Doğruluğu:** %92.22
+* **Sağlıklı Doku (No Tumor) Özgüllüğü:** %98 (Yanlış pozitif oranı oldukça düşüktür)
+
+| Sınıf | Precision | Recall | F1-Score |
+| :--- | :---: | :---: | :---: |
+| Glioma | 0.91 | 0.86 | 0.88 |
+| Meningioma | 0.83 | 0.88 | 0.85 |
+| No Tumor | 0.98 | 0.96 | 0.97 |
+| Pituitary | 0.95 | 0.97 | 0.96 |
+
+## 🛠️ Teknoloji Yığını
+* **Backend:** FastAPI (Python 3.10)
+* **Frontend:** React.js + Vite
+* **Derin Öğrenme:** TensorFlow 2.17, Keras
+* **Konteynerizasyon:** Docker & Docker Compose
+* **Görüntü İşleme:** Pillow, NumPy
+
+
+
+## 📦 Docker ile Kurulum ve Çalıştırma
+
+Sistem iki ayrı mikroservis (Frontend ve Backend) olarak Docker üzerinde çalışmaktadır. Kurulum için bilgisayarınızda Docker Desktop yüklü olması yeterlidir.
+
+### 1. Projeyi İndirin
+```bash
+git clone [https://github.com/kullanici_adin/BrainTumorDetection.git](https://github.com/kullanici_adin/BrainTumorDetection.git)
 cd BrainTumorDetection
-2. Modeli YerleştirinEğitilmiş olan EfficientNetB6_best_model.keras dosyasının Models/ klasörü altında olduğundan emin olun.3. Docker Compose ile BaşlatınBashdocker-compose up --build
-Uygulama ayağa kalktıktan sonra tarayıcınızdan şu adrese gidin:Arayüz (Frontend): http://localhost:3000API Dökümantasyonu (Swagger): http://localhost:8000/docs📊 Model DetaylarıRapor sonuçlarına göre model performans metrikleri:SınıfPrecisionRecallF1-ScoreGlioma0.910.860.88Meningioma0.830.880.85No Tumor0.980.960.97Pituitary0.950.970.96🧪 Ekran Görüntüleri(Buraya uygulamanın arayüzünden birkaç ekran görüntüsü eklemeniz repoyu daha ilgi çekici kılar)🎓 Akademik ReferansBu çalışma Kocaeli Üniversitesi Yazılım Mühendisliği bölümü bünyesinde hazırlanmıştır. Detaylı teknik analiz için Rapor.pdf dosyasını inceleyebilirsiniz.
+
+```
+
+### 2. Model Dosyasını Kontrol Edin
+
+Eğitilmiş model dosyanızın şu yolda olduğundan emin olun:
+`Models/EfficientNetB6_best_model.keras`
+
+### 3. Uygulamayı Başlatın
+
+Aşağıdaki komut her iki servisi de (Vite ve FastAPI) otomatik olarak ayağa kaldıracaktır:
+
+```bash
+docker-compose up --build
+
+```
+
+### 4. Erişim
+
+* **Web Arayüzü:** [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000)
+* **API Dökümantasyonu:** [http://localhost:8000/docs](https://www.google.com/search?q=http://localhost:8000/docs)
+
+## 🔍 Model Mimarisi ve Eğitim
+
+Eğitim sürecinde **Adam optimizer** kullanılmış, öğrenme oranı **0.0001** olarak belirlenmiştir. Veri setindeki dengesizliği gidermek için veri artırma (data augmentation) teknikleri uygulanmıştır. Modelin "kara kutu" yapısını şeffaflaştırmak için analizlerde **Grad-CAM** görselleştirme tekniklerinden faydalanılmıştır.
+
+## 🎓 Akademik Bilgi
+
+Bu çalışma **Kocaeli Üniversitesi Yazılım Mühendisliği** bölümü kapsamında bir bitirme/proje raporu olarak hazırlanmıştır. Detaylı teknik bilgi için proje dizinindeki rapor dosyasını inceleyebilirsiniz.
+
+```
+
+---
+
+### Nasıl Kullanılır?
+1.  Projenin ana dizininde `README.md` adında yeni bir dosya oluştur (varsa içini boşalt).
+2.  Yukarıdaki kod bloğunu (gri kutu içindeki metni) tamamen kopyala ve dosyaya yapıştır.
+3.  Kaydet ve GitHub'a gönder. GitHub bu dosyayı otomatik olarak algılayıp profilinde görseldeki gibi şık bir şekilde sunacaktır.
+
+```
