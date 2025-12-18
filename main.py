@@ -6,7 +6,7 @@ import numpy as np
 from PIL import Image
 import io
 
-
+import os
 from tensorflow.keras.applications import EfficientNetB6
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import GlobalAveragePooling2D, Dense, BatchNormalization, Dropout
@@ -14,19 +14,17 @@ from tensorflow.keras.layers import GlobalAveragePooling2D, Dense, BatchNormaliz
 
 app = FastAPI(title="Brain Tumor Detection API")
 
-# 2. CORS Ayarları (React ile iletişim için ÇOK ÖNEMLİ)
-# React genelde localhost:3000'de çalışır, FastAPI ise 8000'de.
-# Bu ayar olmadan tarayıcı güvenlik nedeniyle isteği engeller.
+
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
-
+origins=["*"]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # Sadece bu adreslerden gelen isteklere izin ver
+    allow_origins=origins,  
     allow_credentials=True,
-    allow_methods=["*"],    # GET, POST, PUT vb. hepsine izin ver
+    allow_methods=["*"],    
     allow_headers=["*"],
 )
 
@@ -40,7 +38,7 @@ def create_model():
     )
     base_model.trainable = False
 
-    # Sequential Model Yapısı
+    
     model = Sequential([
         base_model,
         GlobalAveragePooling2D(),
@@ -55,15 +53,14 @@ def create_model():
     return model
 
 
-MODEL_PATH = "Models\EfficientNetB6_best_model.keras" 
-print(f"Model yükleniyor: {MODEL_PATH}...")
 
+MODEL_PATH = os.getenv("MODEL_PATH", "Models/EfficientNetB6_best_model.keras")
 try:
     model = create_model()
     model.load_weights(MODEL_PATH)
-    print("✅ Model başarıyla yüklendi!")
+    print("Model başarıyla yüklendi!")
 except Exception as e:
-    print(f"❌ Model yüklenirken hata oluştu: {e}")
+    print(f" Model yüklenirken hata oluştu: {e}")
     model = None
 
 
@@ -80,7 +77,7 @@ def read_file_as_image(data) -> np.ndarray:
         if image.mode != "RGB":
             image = image.convert("RGB")
         
-        # Modeli eğittiğin boyut (EfficientNet genelde 224x224 ister)
+        
         image = image.resize((224, 224))
         
         
@@ -109,7 +106,6 @@ async def predict(file: UploadFile = File(...)):
     if image is None:
         raise HTTPException(status_code=400, detail="Dosya geçerli bir resim değil.")
 
-    # Batch boyutu ekle (Model (1, 224, 224, 3) şeklinde veri bekler)
     img_batch = np.expand_dims(image, 0)
 
     predictions = model.predict(img_batch)
