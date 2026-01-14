@@ -150,6 +150,17 @@ En iyi performans EfficientNetB6 modeli ile elde edilmiştir.
 - **NoTumor Specificity:** %98
 - **Pituitary Recall:** %98
 
+## UI
+
+![Glioma Ekran Görüntüsü](UI-Images/glioma.png)
+
+![Meningioma Ekran Görüntüsü](UI-Images/meningioma.png)
+
+![Notumor Ekran Görüntüsü](UI-Images/notumor.png)
+
+![Pituitary Ekran Görüntüsü](UI-Images/pituitary.png)
+
+*Uygulama arayüzü - MR görüntüsü yükleme ve analiz sonuçları görünümü*
 ## 🐛 Sorun Giderme
 
 ### Model yüklenemiyor:
